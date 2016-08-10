@@ -6,11 +6,12 @@ end
 function Base.show(io::IO, dataset::Dataset)
     dataset == C_NULL && (print(io, "NULL Dataset"); return)
     println(io, "GDAL Dataset ($(getdriver(dataset)))")
-    print(io, "File(s): ")
-    for (i,filename) in enumerate(filelist(dataset))
-        print(io, "$filename ")
-        # display up to 4 filenames per line
-        if i % 4 == 0 println() end
+    files = filelist(dataset)
+    if length(files) > 0
+        println(io, "Files: $(files[1])")
+        for filename in files[2:end]
+            println(io, "       $filename")
+        end
     end
     nrasters = nraster(dataset)
     if nrasters > 0
