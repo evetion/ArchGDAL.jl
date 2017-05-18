@@ -1,5 +1,6 @@
 module ArchGDAL
 
+    using DataStreams
     using Compat
     import Compat.String
     import GDAL
@@ -23,5 +24,6 @@ module ArchGDAL
     include("context.jl")
     include("base/iterators.jl")
     include("base/display.jl")
+    include("datastreams.jl")
 
 end # module
